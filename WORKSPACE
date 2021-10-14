@@ -1,9 +1,5 @@
 load("//dependencies/vaticle:repositories.bzl", "vaticle_dependencies")
-#vaticle_dependencies()
-local_repository(
-    name = "vaticle_dependencies",
-    path = "/home/vmax/work/vaticle/dependencies",
-)
+vaticle_dependencies()
 
 # Load //builder/rust
 load("@vaticle_dependencies//builder/rust:deps.bzl", rust_deps = "deps")
@@ -119,15 +115,11 @@ load("@vaticle_dependencies//tool/common:deps.bzl", vaticle_dependencies_tool_ma
 
 # Load //builder/antlr
 load("@vaticle_dependencies//builder/antlr:deps.bzl", antlr_deps = "deps", "antlr_version")
-#antlr_deps()
-local_repository(
-    name = "rules_antlr",
-    path = "/home/vmax/work/vaticle/rules_antlr",
-)
+antlr_deps()
 
 load("@rules_antlr//antlr:lang.bzl", "JAVA", "RUST")
 load("@rules_antlr//antlr:repositories.bzl", "rules_antlr_dependencies")
-rules_antlr_dependencies(antlr_version, JAVA, RUST)
+rules_antlr_dependencies("4.8.2-rust", JAVA, RUST)
 
 load("@vaticle_dependencies//library/maven:rules.bzl", "maven")
 maven(vaticle_dependencies_tool_maven_artifacts)

@@ -60,15 +60,12 @@ antlr(
     srcs = [":rust-grammar"],
     language = "Rust",
     visitor = True,
-    package = "com.vaticle.typeql.grammar",
+    package = "typeqlgrammar",
 )
 
 
 rust_library(
     name = "typeqlgrammar",
-#    srcs = glob([
-#        "typeqlgrammar/gen/*.rs", "typeqlgrammar/*.rs"
-#    ]),
     srcs = [":typeqlgrammar-src"],
     deps = [
         "@vaticle_dependencies//library/crates:antlr_rust",
